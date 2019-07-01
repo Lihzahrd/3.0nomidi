@@ -663,16 +663,16 @@ var beepbox;
             const oscillatorMultiplier = 2.0 * cosIncrement;
             for (let startIndex = 0; startIndex < fullArrayLength; startIndex += stride) {
                 const startIndexA = startIndex;
-                const mdIndexA = startIndexA + midSubStride;
+                const midIndexA = startIndexA + midSubStride;
                 const startIndexB = startIndexA + subStride;
-                const mdIndexB = startIndexB + midSubStride;
+                const midIndexB = startIndexB + midSubStride;
                 const stopIndex = startIndexB + subStride;
                 const realStartA = array[startIndexA];
                 const imagStartB = array[startIndexB];
                 array[startIndexA] = realStartA + imagStartB;
-                array[mdIndexA] *= 2;
+                array[midIndexA] *= 2;
                 array[startIndexB] = realStartA - imagStartB;
-                array[mdIndexB] *= 2;
+                array[midIndexB] *= 2;
                 let c = cosIncrement;
                 let s = -sinIncrement;
                 let cPrev = 1.0;
@@ -11572,12 +11572,12 @@ var beepbox;
                     });
                     reader.readAsText(file);
                 }
-                else if (extension == "midi" || extension == "mid") {
+                else if (extension == "FAIL1" || extension == "FAIL2") {
                     const reader = new FileReader();
                     reader.addEventListener("load", (event) => {
                         this._doc.prompt = null;
                         this._doc.goBackToStart();
-                        this._parseMidiFile(reader.result);
+                        this._parseFAIL3File(reader.result);
                     });
                     reader.readAsArrayBuffer(file);
                 }
