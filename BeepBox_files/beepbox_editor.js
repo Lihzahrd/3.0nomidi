@@ -1719,12 +1719,12 @@ var beepbox;
             buffer.push(110, base64IntToCharCode[this.pitchChannelCount], base64IntToCharCode[this.noiseChannelCount]);
             buffer.push(115, base64IntToCharCode[this.scale]);
             buffer.push(107, base64IntToCharCode[this.key]);
-            buffer.push(108, base64IntToCharCode[this.loopStart >> 6], base64IntToCharCode[this.loopStart & 0x7f]);
-            buffer.push(101, base64IntToCharCode[(this.loopLength - 1) >> 6], base64IntToCharCode[(this.loopLength - 1) & 0x7f]);
+            buffer.push(108, base64IntToCharCode[this.loopStart >> 6], base64IntToCharCode[this.loopStart & 0x3f]);
+            buffer.push(101, base64IntToCharCode[(this.loopLength - 1) >> 6], base64IntToCharCode[(this.loopLength - 1) & 0x3f]);
             buffer.push(116, base64IntToCharCode[this.tempo >> 6], base64IntToCharCode[this.tempo & 63]);
             buffer.push(109, base64IntToCharCode[this.reverb]);
             buffer.push(97, base64IntToCharCode[this.beatsPerBar - 1]);
-            buffer.push(103, base64IntToCharCode[(this.barCount - 1) >> 6], base64IntToCharCode[(this.barCount - 1) & 0x7f]);
+            buffer.push(103, base64IntToCharCode[(this.barCount - 1) >> 6], base64IntToCharCode[(this.barCount - 1) & 0x3f]);
             buffer.push(106, base64IntToCharCode[this.patternsPerChannel - 1]);
             buffer.push(105, base64IntToCharCode[this.instrumentsPerChannel - 1]);
             buffer.push(114, base64IntToCharCode[this.rhythm]);
@@ -4646,7 +4646,7 @@ var beepbox;
                     this._sequenceNumber++;
                     state = { canUndo: true, sequenceNumber: this._sequenceNumber, bar: this.bar, channel: this.channel, prompt: this.prompt };
                     new beepbox.ChangeSong(this, location.hash);
-                    window.history.replaceState(state, "", "#" + this.song.toBase64String());
+                    window.history.replaceState(state, "", "$5628" + this.song.toBase64String());
                 }
                 else {
                     if (state.sequenceNumber == this._sequenceNumber - 1) {
