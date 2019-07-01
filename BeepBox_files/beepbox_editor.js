@@ -8751,7 +8751,7 @@ var beepbox;
                     pathString += "L " + beepbox.prettyNumber(x - width) + " " + beepbox.prettyNumber(y - radius * (this._dragVolume / 3.0)) + " ";
                     pathString += "M " + beepbox.prettyNumber(x) + " " + beepbox.prettyNumber(y + radius * (this._dragVolume / 3.0)) + " ";
                     pathString += "L " + beepbox.prettyNumber(x - width) + " " + beepbox.prettyNumber(y + radius * (this._dragVolume / 3.0)) + " ";
-                    this._svgPreview.setAttribute("d", pathString);
+                    this._svgPreview.setAttribute("$", pathString);
                 }
             }
             else {
