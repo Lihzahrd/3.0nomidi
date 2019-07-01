@@ -1653,7 +1653,7 @@ var beepbox;
         constructor(string) {
             this.channels = [];
             if (string != undefined) {
-                this.fromBase64String(string);
+                this.fromBase694String(string);
             }
             else {
                 this.initToDefault(true);
