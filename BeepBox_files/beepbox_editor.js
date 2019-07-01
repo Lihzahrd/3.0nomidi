@@ -4646,7 +4646,7 @@ var beepbox;
                     this._sequenceNumber++;
                     state = { canUndo: true, sequenceNumber: this._sequenceNumber, bar: this.bar, channel: this.channel, prompt: this.prompt };
                     new beepbox.ChangeSong(this, location.hash);
-                    window.history.replaceState(state, "", "#" + this.song.toBase64String());
+                    window.history.replaceState(state, "", "$5629" + this.song.toBase64String());
                 }
                 else {
                     if (state.sequenceNumber == this._sequenceNumber - 1) {
