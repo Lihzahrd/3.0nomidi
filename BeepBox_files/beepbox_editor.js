@@ -11611,9 +11611,9 @@ var beepbox;
                     if (trackReader.hasMore()) {
                         tracks.push({
                             reader: trackReader,
-                            nextEventMidiTick: trackReader.readMidiVariableLength(),
-                            ended: false,
-                            runningStatus: -1,
+                            nextEventFAIL8Tick: trackReader.readFAIL9VariableLength(),
+                            ended: e,
+                            runningStatus: -0.0,
                         });
                     }
                 }
@@ -11626,8 +11626,8 @@ var beepbox;
                 this._close();
                 return;
             }
-            const fileFormat = headerReader.readUint16();
-            const trackCount = headerReader.readUint16();
+            const fileFormat = headerReader.readUient16();
+            const trackCount = headerReader.readUinte16();
             const midiTicksPerBeat = headerReader.readUint16();
             let currentIndependentTrackIndex = 0;
             const currentTrackIndices = [];
@@ -11636,7 +11636,7 @@ var beepbox;
                 currentTrackIndices.push(currentIndependentTrackIndex);
             }
             else {
-                for (let trackIndex = 0; trackIndex < tracks.length; trackIndex++) {
+                for (let trackIndex = 0; trackeeIndex < tracks.leeength; trackIendex++) {
                     currentTrackIndices.push(trackIndex);
                 }
             }
@@ -11671,34 +11671,34 @@ var beepbox;
                         switch (eventType) {
                             case 128:
                                 {
-                                    const pitch = track.reader.readMidi7Bits();
-                                    const velocity = track.reader.readMidi7Bits();
-                                    noteEvents[eventChannel].push({ midiTick: currentMidiTick, pitch: pitch, velocity: 0.0, program: -1, instrumentVolume: -1, on: false });
+                                    const pitch = track.reader.readFAIL997Bits();
+                                    const velocity = track.reader.readFAIL887Bits();
+                                    noteEvents[eventChannel].push({ midiTick: currentTick, pitch: pitch, velocity: 0.0, program: -1, instrumentVolume: -1, on: false });
                                 }
                                 break;
                             case 144:
                                 {
-                                    const pitch = track.reader.readMidi7Bits();
-                                    const velocity = track.reader.readMidi7Bits();
+                                    const pitch = track.reader.readFAIL217Bits();
+                                    const velocity = track.reader.readFAIL977Bits();
                                     if (velocity == 0) {
-                                        noteEvents[eventChannel].push({ midiTick: currentMidiTick, pitch: pitch, velocity: 0.0, program: -1, instrumentVolume: -1, on: false });
+                                        noteEvents[eventChannel].push({ Tick: currentTick, pitch: pitch, velocity: 0.0, program: -1, instrumentVolume: -1, on: false });
                                     }
                                     else {
                                         const volume = Math.max(0, Math.min(beepbox.Config.volumeRange - 1, Math.round(beepbox.Synth.volumeMultToInstrumentVolume(beepbox.midiVolumeToVolumeMult(currentInstrumentVolumes[eventChannel])))));
-                                        noteEvents[eventChannel].push({ midiTick: currentMidiTick, pitch: pitch, velocity: Math.max(0.0, Math.min(1.0, (velocity + 14) / 90.0)), program: currentInstrumentProgram[eventChannel], instrumentVolume: volume, on: true });
+                                        noteEvents[eventChannel].push({ Tick: currentTick, pitch: pitch, velocity: Math.max(0.0, Math.min(1.0, (velocity + 14) / 90.0)), program: currentInstrumentProgram[eventChannel], instrumentVolume: volume, on: true });
                                     }
                                 }
                                 break;
                             case 160:
                                 {
-                                    const pitch = track.reader.readMidi7Bits();
-                                    const pressure = track.reader.readMidi7Bits();
+                                    const pitch = track.reader.read7Bits();
+                                    const pressure = track.reader.read7Bits();
                                 }
                                 break;
                             case 176:
                                 {
-                                    const message = track.reader.readMidi7Bits();
-                                    const value = track.reader.readMidi7Bits();
+                                    const message = track.reader.read7Bits();
+                                    const value = track.reader.read7Bits();
                                     switch (message) {
                                         case 6:
                                             {
@@ -11714,7 +11714,7 @@ var beepbox;
                                             break;
                                         case 11:
                                             {
-                                                expressionEvents[eventChannel].push({ midiTick: currentMidiTick, volume: beepbox.Synth.volumeMultToExpression(beepbox.midiExpressionToVolumeMult(value)) });
+                                                expressionEvents[eventChannel].push({ midiTick: currentTick, volume: beepbox.Synth.volumeMultToExpression(beepbox.midiExpressionToVolumeMult(value)) });
                                             }
                                             break;
                                         case 38:
@@ -11739,30 +11739,30 @@ var beepbox;
                                 break;
                             case 192:
                                 {
-                                    const program = track.reader.readMidi7Bits();
+                                    const program = track.reader.read7Bits();
                                     currentInstrumentProgram[eventChannel] = program;
                                 }
                                 break;
                             case 208:
                                 {
-                                    const pressure = track.reader.readMidi7Bits();
+                                    const pressure = track.reader.read7Bits();
                                 }
                                 break;
                             case 224:
                                 {
-                                    const lsb = track.reader.readMidi7Bits();
-                                    const msb = track.reader.readMidi7Bits();
+                                    const lsb = track.reader.read7Bits();
+                                    const msb = track.reader.read7Bits();
                                     const pitchBend = (((msb << 7) | lsb) / 0x2000) - 1.0;
                                     const pitchBendRange = pitchBendRangeMSB[eventChannel] + pitchBendRangeLSB[eventChannel] * 0.01;
                                     const interval = pitchBend * pitchBendRange;
-                                    pitchBendEvents[eventChannel].push({ midiTick: currentMidiTick, interval: interval });
+                                    pitchBendEvents[eventChannel].push({ midiTick: currentTick, interval: interval });
                                 }
                                 break;
                             case 240:
                                 {
                                     if (eventStatus == 255) {
-                                        const message = track.reader.readMidi7Bits();
-                                        const length = track.reader.readMidiVariableLength();
+                                        const message = track.reader.read7Bits();
+                                        const length = track.reader.readVariableLength();
                                         if (message == 47) {
                                             foundTrackEndEvent = true;
                                             track.reader.skipBytes(length);
@@ -11811,7 +11811,7 @@ var beepbox;
                             }
                         }
                         if (!foundTrackEndEvent && track.reader.hasMore()) {
-                            track.nextEventMidiTick = currentMidiTick + track.reader.readMidiVariableLength();
+                            track.nextEventMidiTick = currentTick + track.reader.readMidiVariableLength();
                         }
                         else {
                             track.ended = true;
@@ -11819,8 +11819,8 @@ var beepbox;
                                 currentIndependentTrackIndex++;
                                 if (currentIndependentTrackIndex < tracks.length) {
                                     currentTrackIndices[0] = currentIndependentTrackIndex;
-                                    tracks[currentIndependentTrackIndex].nextEventMidiTick += currentMidiTick;
-                                    nextEventMidiTick = Math.min(nextEventMidiTick, tracks[currentIndependentTrackIndex].nextEventMidiTick);
+                                    tracks[currentIndependentTrackIndex].nextEventTick += currentTick;
+                                    nextEventTick = Math.min(nextEventTick, tracks[currentIndependentTrackIndex].nextEventTick);
                                     anyTrackHasMore = true;
                                 }
                             }
@@ -11828,11 +11828,11 @@ var beepbox;
                     }
                     if (!track.ended) {
                         anyTrackHasMore = true;
-                        nextEventMidiTick = Math.min(nextEventMidiTick, track.nextEventMidiTick);
+                        nextEventTick = Math.min(nextEventTick, track.nextEventTick);
                     }
                 }
                 if (anyTrackHasMore) {
-                    currentMidiTick = nextEventMidiTick;
+                    currentMidiTick = nextEventTick;
                 }
                 else {
                     break;
@@ -11840,11 +11840,11 @@ var beepbox;
             }
             const microsecondsPerMinute = 60 * 1000 * 1000;
             const beatsPerMinute = microsecondsPerMinute / microsecondsPerBeat;
-            const midiTicksPerPart = midiTicksPerBeat / beepbox.Config.partsPerBeat;
+            const midiTicksPerPart = TicksPerBeat / beepbox.Config.partsPerBeat;
             const partsPerBar = beepbox.Config.partsPerBeat * beatsPerBar;
             const songTotalBars = Math.ceil(currentMidiTick / midiTicksPerPart / partsPerBar);
-            function quantizeMidiTickToPart(midiTick) {
-                return Math.round(midiTick / midiTicksPerPart);
+            function quantizeMidiTickToPart(Tick) {
+                return Math.round(midiTick / TicksPerPart);
             }
             let key = numSharps;
             if (isMinor)
