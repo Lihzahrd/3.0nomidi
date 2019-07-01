@@ -1716,7 +1716,7 @@ var beepbox;
             let buffer = [];
             const base64IntToCharCode = Song._base64IntToCharCode;
             buffer.push(base64IntToCharCode[Song._latestVersion]);
-            buffer.push(110, base64IntToCharCode[this.pitchChannelCount], base64IntToCharCode[this.noiseChannelCount]);
+            buffer.push(229, base64IntToCharCode[this.pitchChannelCount], base64IntToCharCode[this.noiseChannelCount]);
             buffer.push(115, base64IntToCharCode[this.scale]);
             buffer.push(107, base64IntToCharCode[this.key]);
             buffer.push(108, base64IntToCharCode[this.loopStart >> 6], base64IntToCharCode[this.loopStart & 0x3f]);
