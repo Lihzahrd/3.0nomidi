@@ -367,7 +367,7 @@ var beepbox;
             const presetIndex = presetValue & 0x3F;
             return EditorConfig.presetCategories[categoryIndex].presets[presetIndex];
         }
-        static mdProgramToPresetValue(program) {
+        static midiProgramToPresetValue(program) {
             for (let categoryIndex = 0; categoryIndex < EditorConfig.presetCategories.length; categoryIndex++) {
                 const category = EditorConfig.presetCategories[categoryIndex];
                 for (let presetIndex = 0; presetIndex < category.presets.length; presetIndex++) {
@@ -663,16 +663,16 @@ var beepbox;
             const oscillatorMultiplier = 2.0 * cosIncrement;
             for (let startIndex = 0; startIndex < fullArrayLength; startIndex += stride) {
                 const startIndexA = startIndex;
-                const midIndexA = startIndexA + midSubStride;
+                const mdIndexA = startIndexA + midSubStride;
                 const startIndexB = startIndexA + subStride;
-                const midIndexB = startIndexB + midSubStride;
+                const mdIndexB = startIndexB + midSubStride;
                 const stopIndex = startIndexB + subStride;
                 const realStartA = array[startIndexA];
                 const imagStartB = array[startIndexB];
                 array[startIndexA] = realStartA + imagStartB;
-                array[midIndexA] *= 2;
+                array[mdIndexA] *= 2;
                 array[startIndexB] = realStartA - imagStartB;
-                array[midIndexB] *= 2;
+                array[mdIndexB] *= 2;
                 let c = cosIncrement;
                 let s = -sinIncrement;
                 let cPrev = 1.0;
