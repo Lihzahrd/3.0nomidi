@@ -602,14 +602,14 @@ var beepbox;
         { name: "cyan", channelDim: "#0099A1", channelBright: "#25F3FF", noteDim: "#00BDC7", noteBright: "#92F9FF" },
         { name: "yellow", channelDim: "#A1A100", channelBright: "#FFFF25", noteDim: "#C7C700", noteBright: "#FFFF92" },
         { name: "orange", channelDim: "#C75000", channelBright: "#FF9752", noteDim: "#FF771C", noteBright: "#FFCDAB" },
-        { name: "green", channelDim: "#c75000", channelBright: "#ff9752", noteDim: "#c75000", noteBright: "#ff9752" },
-        { name: "purple", channelDim: "#d020d0", channelBright: "#ff90ff", noteDim: "#d020d0", noteBright: "#ff90ff" },
-        { name: "blue", channelDim: "#492184", channelBright: "#7500c4", noteDim: "#492184", noteBright: "#7500c4" },
+        { name: "green", channelDim: "#00A100", channelBright: "#50FF50", noteDim: "#00C700", noteBright: "#A0FFA0" },
+        { name: "purple", channelDim: "#D020D0", channelBright: "#FF90FF", noteDim: "#E040E0", noteBright: "#FFC0FF" },
+        { name: "blue", channelDim: "#7777B0", channelBright: "#A0A0FF", noteDim: "#8888D0", noteBright: "#D0D0FF" },
     ]);
     EditorConfig.noiseColors = beepbox.toNameMap([
-        { name: "gray", channelDim: "#991010", channelBright: "#ff1616", noteDim: "#991010", noteBright: "#ff1616" },
-        { name: "brown", channelDim: "#aaaaaa", channelBright: "#ffffff", noteDim: "#aaaaaa", noteBright: "#ffffff" },
-        { name: "azure", channelDim: "#5869BD", channelBright: "#768dfc", noteDim: "#5869BD", noteBright: "#768dfc" },
+        { name: "gray", channelDim: "#6F6F6F", channelBright: "#AAAAAA", noteDim: "#A7A7A7", noteBright: "#E0E0E0" },
+        { name: "brown", channelDim: "#996633", channelBright: "#DDAA77", noteDim: "#CC9966", noteBright: "#F0D0BB" },
+        { name: "azure", channelDim: "#4A6D8F", channelBright: "#77AADD", noteDim: "#6F9FCF", noteBright: "#BBD7FF" },
     ]);
     beepbox.EditorConfig = EditorConfig;
 })(beepbox || (beepbox = {}));
