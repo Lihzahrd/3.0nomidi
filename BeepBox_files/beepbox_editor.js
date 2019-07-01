@@ -599,7 +599,7 @@ var beepbox;
             ]) },
     ]);
     EditorConfig.pitchColors = beepbox.toNameMap([
-        { name: "cyan", channelDim: "#0099a1", channelBright: "#25f3ff", noteDim: "#0099a1", noteBright: "#25f3ff" },
+        { name: "cyan", channelDim: "#00BDC7", channelBright: "#25F3FF", noteDim: "#00BDC7", noteBright: "#92F9FF" },
         { name: "yellow", channelDim: "#439143", channelBright: "#44ff44", noteDim: "#439143", noteBright: "#44ff44" },
         { name: "orange", channelDim: "#a1a100", channelBright: "#ffff25", noteDim: "#a1a100", noteBright: "#ffff25" },
         { name: "green", channelDim: "#c75000", channelBright: "#ff9752", noteDim: "#c75000", noteBright: "#ff9752" },
