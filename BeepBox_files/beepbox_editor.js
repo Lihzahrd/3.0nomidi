@@ -23,7 +23,7 @@ var beepbox;
 (function (beepbox) {
     class Config {
     }
-    Config.versionDisplayName = "BeepBox 3.0 (no midi)";
+    Config.versionDisplayName = "BeepBox 3.0 (no import)";
     Config.scales = toNameMap([
         { name: "easy :)", flags: [true, false, true, false, true, false, false, true, false, true, false, false] },
         { name: "easy :(", flags: [true, false, false, true, false, true, false, true, false, false, true, false] },
