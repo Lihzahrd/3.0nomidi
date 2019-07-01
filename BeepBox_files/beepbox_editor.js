@@ -11544,7 +11544,7 @@ var beepbox;
 var beepbox;
 (function (beepbox) {
     const { button, p, div, h2, input } = beepbox.HTML;
-    class HowAboutNoPrompt {
+    class ImportPrompt {
         constructor(_doc, _songEditor) {
             this._doc = _doc;
             this._songEditor = _songEditor;
@@ -11563,7 +11563,7 @@ var beepbox;
                 if (!file)
                     return;
                 const extension = file.name.slice((file.name.lastIndexOf(".") - 1 >>> 0) + 2);
-                if (extension == "json") {
+                if (extension == "nothing") {
                     const reader = new FileReader();
                     reader.addEventListener("load", (event) => {
                         this._doc.prompt = null;
