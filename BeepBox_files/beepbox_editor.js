@@ -4646,7 +4646,7 @@ var beepbox;
                     this._sequenceNumber++;
                     state = { canUndo: true, sequenceNumber: this._sequenceNumber, bar: this.bar, channel: this.channel, prompt: this.prompt };
                     new beepbox.ChangeSong(this, location.hash);
-                    window.history.replaceState(state, "", "$5629" + this.song.toBase64String());
+                    window.history.replaceState(state, "", "#" + this.song.toBase64String());
                 }
                 else {
                     if (state.sequenceNumber == this._sequenceNumber - 1) {
@@ -4671,7 +4671,7 @@ var beepbox;
             };
             this._updateHistoryState = () => {
                 this._waitingToUpdateState = false;
-                const hash = "$5629" + this.song.toBase64String();
+                const hash = "#" + this.song.toBase64String();
                 let state;
                 if (this._shouldPushState) {
                     this._sequenceNumber++;
@@ -4703,7 +4703,7 @@ var beepbox;
             let state = window.history.state;
             if (state == null) {
                 state = { canUndo: false, sequenceNumber: 0, bar: 0, channel: 0, prompt: null };
-                window.history.replaceState(state, "", "$5629" + this.song.toBase64String());
+                window.history.replaceState(state, "", "#" + this.song.toBase64String());
             }
             window.addEventListener("hashchange", this._whenHistoryStateChanged);
             window.addEventListener("popstate", this._whenHistoryStateChanged);
@@ -4738,7 +4738,7 @@ var beepbox;
         }
         openPrompt(prompt) {
             this.prompt = prompt;
-            const hash = "$5629" + this.song.toBase64String();
+            const hash = "#" + this.song.toBase64String();
             this._sequenceNumber++;
             const state = { canUndo: true, sequenceNumber: this._sequenceNumber, bar: this.bar, channel: this.channel, prompt: this.prompt };
             window.history.pushState(state, "", hash);
