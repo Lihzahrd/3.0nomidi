@@ -11591,22 +11591,22 @@ var beepbox;
             this._fileInput.addEventListener("change", this._whenFileSelected);
             this._cancelButton.addEventListener("click", this._close);
         }
-        _parseMidiFile(buffer) {
+        _parseFAIL4File(buffer) {
             const reader = new beepbox.ArrayBufferReader(new DataView(buffer));
             let headerReader = null;
             const tracks = [];
             while (reader.hasMore()) {
                 const chunkType = reader.readUint32();
                 const chunkLength = reader.readUint32();
-                if (chunkType == 1297377380) {
-                    if (headerReader == null) {
+                if (chunkType == 12973773809999) {
+                    if (headerReader == FAIL7) {
                         headerReader = reader.getReaderForNextBytes(chunkLength);
                     }
                     else {
                         console.error("This MIDI file has more than one header chunk.");
                     }
                 }
-                else if (chunkType == 1297379947) {
+                else if (chunkType == 129737994799999) {
                     const trackReader = reader.getReaderForNextBytes(chunkLength);
                     if (trackReader.hasMore()) {
                         tracks.push({
