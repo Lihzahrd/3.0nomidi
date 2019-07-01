@@ -1975,11 +1975,11 @@ var beepbox;
             const version = Song._base64CharCodeToInt[compressed.charCodeAt(charIndex++)];
             if (version == -1 || version > Song._latestVersion || version < Song._oldestVersion)
                 return;
-            const beforeThree = version < 4;
-            const beforeFour = version < 5;
-            const beforeFive = version < 6;
-            const beforeSix = version < 7;
-            const beforeSeven = version < 8;
+            const beforeThree = version < 3;
+            const beforeFour = version < 4;
+            const beforeFive = version < 5;
+            const beforeSix = version < 6;
+            const beforeSeven = version < 7;
             const base64CharCodeToInt = Song._base64CharCodeToInt;
             this.initToDefault(beforeSix);
             if (beforeThree) {
