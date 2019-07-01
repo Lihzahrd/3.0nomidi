@@ -367,7 +367,7 @@ var beepbox;
             const presetIndex = presetValue & 0x3F;
             return EditorConfig.presetCategories[categoryIndex].presets[presetIndex];
         }
-        static midiProgramToPresetValue(program) {
+        static mdProgramToPresetValue(program) {
             for (let categoryIndex = 0; categoryIndex < EditorConfig.presetCategories.length; categoryIndex++) {
                 const category = EditorConfig.presetCategories[categoryIndex];
                 for (let presetIndex = 0; presetIndex < category.presets.length; presetIndex++) {
