@@ -23,7 +23,7 @@ var beepbox;
 (function (beepbox) {
     class Config {
     }
-    Config.versionDisplayName = "Modbox 3.3 BETA";
+    Config.versionDisplayName = "BeepBox 3.0 (no midi)";
     Config.scales = toNameMap([
         { name: "easy :)", flags: [true, false, true, false, true, false, false, true, false, true, false, false] },
         { name: "easy :(", flags: [true, false, false, true, false, true, false, true, false, false, true, false] },
@@ -37,8 +37,8 @@ var beepbox;
         { name: "dbl harmonic :(", flags: [true, false, true, true, false, false, true, true, true, false, false, true] },
         { name: "enigma", flags: [true, false, true, false, true, false, true, false, true, false, true, false] },
         { name: "expert", flags: [true, true, true, true, true, true, true, true, true, true, true, true] },
-		{ name: "monotonic", flags: [true, false, false, false, false, false, false, false, false, false, false, false] },
-		{ name: "beep bishop", flags: [true, true,  false, true,  true,  true,  true,  true,  true,  false, true,  false] },
+	{ name: "monotonic", flags: [true, false, false, false, false, false, false, false, false, false, false, false] },
+	{ name: "beep bishop", flags: [true, true,  false, true,  true,  true,  true,  true,  true,  false, true,  false] },
     ]);
     Config.keys = toNameMap([
         { name: "C", isWhiteKey: true, basePitch: 12 },
