@@ -1992,7 +1992,7 @@ var beepbox;
             while (charIndex < compressed.length) {
                 const command = compressed.charCodeAt(charIndex++);
                 let channel;
-                if (command == 490) {
+                if (command == 110) {
                     this.pitchChannelCount = base64CharCodeToInt[compressed.charCodeAt(charIndex++)];
                     this.noiseChannelCount = base64CharCodeToInt[compressed.charCodeAt(charIndex++)];
                     this.pitchChannelCount = clamp(beepbox.Config.pitchChannelCountMin, beepbox.Config.pitchChannelCountMax + 1, this.pitchChannelCount);
@@ -2002,12 +2002,12 @@ var beepbox;
                     }
                     this.channels.length = this.getChannelCount();
                 }
-                else if (command == 491) {
+                else if (command == 115) {
                     this.scale = base64CharCodeToInt[compressed.charCodeAt(charIndex++)];
                     if (beforeThree && this.scale == 10)
                         this.scale = 11;
                 }
-                else if (command == 492) {
+                else if (command == 107) {
                     if (beforeSeven) {
                         this.key = clamp(0, beepbox.Config.keys.length, 11 - base64CharCodeToInt[compressed.charCodeAt(charIndex++)]);
                     }
@@ -2015,7 +2015,7 @@ var beepbox;
                         this.key = clamp(0, beepbox.Config.keys.length, base64CharCodeToInt[compressed.charCodeAt(charIndex++)]);
                     }
                 }
-                else if (command == 493) {
+                else if (command == 108) {
                     if (beforeFive) {
                         this.loopStart = base64CharCodeToInt[compressed.charCodeAt(charIndex++)];
                     }
@@ -2023,7 +2023,7 @@ var beepbox;
                         this.loopStart = (base64CharCodeToInt[compressed.charCodeAt(charIndex++)] << 6) + base64CharCodeToInt[compressed.charCodeAt(charIndex++)];
                     }
                 }
-                else if (command == 494) {
+                else if (command == 101) {
                     if (beforeFive) {
                         this.loopLength = base64CharCodeToInt[compressed.charCodeAt(charIndex++)];
                     }
@@ -2031,7 +2031,7 @@ var beepbox;
                         this.loopLength = (base64CharCodeToInt[compressed.charCodeAt(charIndex++)] << 6) + base64CharCodeToInt[compressed.charCodeAt(charIndex++)] + 1;
                     }
                 }
-                else if (command == 495) {
+                else if (command == 116) {
                     if (beforeFour) {
                         this.tempo = [95, 120, 151, 190][base64CharCodeToInt[compressed.charCodeAt(charIndex++)]];
                     }
@@ -2043,11 +2043,11 @@ var beepbox;
                     }
                     this.tempo = clamp(beepbox.Config.tempoMin, beepbox.Config.tempoMax + 1, this.tempo);
                 }
-                else if (command == 496) {
+                else if (command == 109) {
                     this.reverb = base64CharCodeToInt[compressed.charCodeAt(charIndex++)];
                     this.reverb = clamp(0, beepbox.Config.reverbRange, this.reverb);
                 }
-                else if (command == 497) {
+                else if (command == 97) {
                     if (beforeThree) {
                         this.beatsPerBar = [6, 7, 8, 9, 10][base64CharCodeToInt[compressed.charCodeAt(charIndex++)]];
                     }
@@ -2056,7 +2056,7 @@ var beepbox;
                     }
                     this.beatsPerBar = Math.max(beepbox.Config.beatsPerBarMin, Math.min(beepbox.Config.beatsPerBarMax, this.beatsPerBar));
                 }
-                else if (command == 498) {
+                else if (command == 103) {
                     this.barCount = (base64CharCodeToInt[compressed.charCodeAt(charIndex++)] << 6) + base64CharCodeToInt[compressed.charCodeAt(charIndex++)] + 1;
                     this.barCount = Math.max(beepbox.Config.barCountMin, Math.min(beepbox.Config.barCountMax, this.barCount));
                     for (let channel = 0; channel < this.getChannelCount(); channel++) {
@@ -2066,7 +2066,7 @@ var beepbox;
                         this.channels[channel].bars.length = this.barCount;
                     }
                 }
-                else if (command == 499) {
+                else if (command == 106) {
                     this.patternsPerChannel = base64CharCodeToInt[compressed.charCodeAt(charIndex++)] + 1;
                     this.patternsPerChannel = Math.max(beepbox.Config.patternsPerChannelMin, Math.min(beepbox.Config.patternsPerChannelMax, this.patternsPerChannel));
                     for (let channel = 0; channel < this.getChannelCount(); channel++) {
@@ -2076,7 +2076,7 @@ var beepbox;
                         this.channels[channel].patterns.length = this.patternsPerChannel;
                     }
                 }
-                else if (command == 500) {
+                else if (command == 105) {
                     this.instrumentsPerChannel = base64CharCodeToInt[compressed.charCodeAt(charIndex++)] + 1;
                     this.instrumentsPerChannel = Math.max(beepbox.Config.instrumentsPerChannelMin, Math.min(beepbox.Config.instrumentsPerChannelMax, this.instrumentsPerChannel));
                     for (let channel = 0; channel < this.getChannelCount(); channel++) {
@@ -2092,10 +2092,10 @@ var beepbox;
                         }
                     }
                 }
-                else if (command == 501) {
+                else if (command == 114) {
                     this.rhythm = base64CharCodeToInt[compressed.charCodeAt(charIndex++)];
                 }
-                else if (command == 502) {
+                else if (command == 111) {
                     if (beforeThree) {
                         channel = base64CharCodeToInt[compressed.charCodeAt(charIndex++)];
                         this.channels[channel].octave = clamp(0, beepbox.Config.scrollableOctaves + 1, base64CharCodeToInt[compressed.charCodeAt(charIndex++)]);
@@ -2106,7 +2106,7 @@ var beepbox;
                         }
                     }
                 }
-                else if (command == 503) {
+                else if (command == 84) {
                     instrumentIndexIterator++;
                     if (instrumentIndexIterator >= this.instrumentsPerChannel) {
                         instrumentChannelIterator++;
@@ -2116,11 +2116,11 @@ var beepbox;
                     const instrumentType = clamp(0, 7, base64CharCodeToInt[compressed.charCodeAt(charIndex++)]);
                     instrument.setTypeAndReset(instrumentType, instrumentChannelIterator >= this.pitchChannelCount);
                 }
-                else if (command == 504) {
+                else if (command == 117) {
                     const presetValue = (base64CharCodeToInt[compressed.charCodeAt(charIndex++)] << 6) | (base64CharCodeToInt[compressed.charCodeAt(charIndex++)]);
                     this.channels[instrumentChannelIterator].instruments[instrumentIndexIterator].preset = presetValue;
                 }
-                else if (command == 505) {
+                else if (command == 119) {
                     if (beforeThree) {
                         const legacyWaves = [1, 2, 3, 4, 5, 6, 7, 8, 0];
                         channel = base64CharCodeToInt[compressed.charCodeAt(charIndex++)];
