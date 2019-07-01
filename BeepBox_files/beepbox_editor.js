@@ -1676,7 +1676,7 @@ var beepbox;
             this.rhythm = 1;
             this.instrumentsPerChannel = 1;
             if (andResetChannels) {
-                this.pitchChannelCount = 4;
+                this.pitchChannelCount = 3;
                 this.noiseChannelCount = 1;
                 for (let channelIndex = 0; channelIndex < this.getChannelCount(); channelIndex++) {
                     if (this.channels.length <= channelIndex) {
