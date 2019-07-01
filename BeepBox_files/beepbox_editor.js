@@ -1714,65 +1714,65 @@ var beepbox;
             let buffer = [];
             const base64IntToCharCode = Song._base64IntToCharCode;
             buffer.push(base64IntToCharCode[Song._latestVersion]);
-            buffer.push(276, base64IntToCharCode[this.pitchChannelCount], base64IntToCharCode[this.noiseChannelCount]);
-            buffer.push(275, base64IntToCharCode[this.scale]);
-            buffer.push(274, base64IntToCharCode[this.key]);
-            buffer.push(273, base64IntToCharCode[this.loopStart >> 6], base64IntToCharCode[this.loopStart & 0x3f]);
-            buffer.push(272, base64IntToCharCode[(this.loopLength - 1) >> 6], base64IntToCharCode[(this.loopLength - 1) & 0x3f]);
-            buffer.push(271, base64IntToCharCode[this.tempo >> 6], base64IntToCharCode[this.tempo & 63]);
-            buffer.push(270, base64IntToCharCode[this.reverb]);
-            buffer.push(269, base64IntToCharCode[this.beatsPerBar - 1]);
-            buffer.push(268, base64IntToCharCode[(this.barCount - 1) >> 6], base64IntToCharCode[(this.barCount - 1) & 0x3f]);
-            buffer.push(267, base64IntToCharCode[this.patternsPerChannel - 1]);
-            buffer.push(266, base64IntToCharCode[this.instrumentsPerChannel - 1]);
-            buffer.push(265, base64IntToCharCode[this.rhythm]);
-            buffer.push(264);
+            buffer.push(110, base64IntToCharCode[this.pitchChannelCount], base64IntToCharCode[this.noiseChannelCount]);
+            buffer.push(115, base64IntToCharCode[this.scale]);
+            buffer.push(107, base64IntToCharCode[this.key]);
+            buffer.push(108, base64IntToCharCode[this.loopStart >> 6], base64IntToCharCode[this.loopStart & 0x3f]);
+            buffer.push(101, base64IntToCharCode[(this.loopLength - 1) >> 6], base64IntToCharCode[(this.loopLength - 1) & 0x3f]);
+            buffer.push(116, base64IntToCharCode[this.tempo >> 6], base64IntToCharCode[this.tempo & 63]);
+            buffer.push(109, base64IntToCharCode[this.reverb]);
+            buffer.push(97, base64IntToCharCode[this.beatsPerBar - 1]);
+            buffer.push(103, base64IntToCharCode[(this.barCount - 1) >> 6], base64IntToCharCode[(this.barCount - 1) & 0x3f]);
+            buffer.push(106, base64IntToCharCode[this.patternsPerChannel - 1]);
+            buffer.push(105, base64IntToCharCode[this.instrumentsPerChannel - 1]);
+            buffer.push(114, base64IntToCharCode[this.rhythm]);
+            buffer.push(111);
             for (let channel = 0; channel < this.getChannelCount(); channel++) {
                 buffer.push(base64IntToCharCode[this.channels[channel].octave]);
             }
             for (let channel = 0; channel < this.getChannelCount(); channel++) {
                 for (let i = 0; i < this.instrumentsPerChannel; i++) {
                     const instrument = this.channels[channel].instruments[i];
-                    buffer.push(263, base64IntToCharCode[instrument.type]);
-                    buffer.push(262, base64IntToCharCode[instrument.volume]);
-                    buffer.push(261, base64IntToCharCode[instrument.preset >> 6], base64IntToCharCode[instrument.preset & 63]);
-                    buffer.push(260, base64IntToCharCode[instrument.effects]);
+                    buffer.push(84, base64IntToCharCode[instrument.type]);
+                    buffer.push(118, base64IntToCharCode[instrument.volume]);
+                    buffer.push(117, base64IntToCharCode[instrument.preset >> 6], base64IntToCharCode[instrument.preset & 63]);
+                    buffer.push(113, base64IntToCharCode[instrument.effects]);
                     if (instrument.type != 4) {
-                        buffer.push(259, base64IntToCharCode[instrument.transition]);
-                        buffer.push(258, base64IntToCharCode[instrument.filterCutoff]);
-                        buffer.push(257, base64IntToCharCode[instrument.filterResonance]);
-                        buffer.push(256, base64IntToCharCode[instrument.filterEnvelope]);
-                        buffer.push(254, base64IntToCharCode[instrument.chord]);
+                        buffer.push(100, base64IntToCharCode[instrument.transition]);
+                        buffer.push(102, base64IntToCharCode[instrument.filterCutoff]);
+                        buffer.push(121, base64IntToCharCode[instrument.filterResonance]);
+                        buffer.push(122, base64IntToCharCode[instrument.filterEnvelope]);
+                        buffer.push(67, base64IntToCharCode[instrument.chord]);
                     }
                     if (instrument.type == 0) {
-                        buffer.push(253, base64IntToCharCode[instrument.chipWave]);
-                        buffer.push(252, base64IntToCharCode[instrument.vibrato]);
-                        buffer.push(251, base64IntToCharCode[instrument.interval]);
+                        buffer.push(119, base64IntToCharCode[instrument.chipWave]);
+                        buffer.push(99, base64IntToCharCode[instrument.vibrato]);
+                        buffer.push(104, base64IntToCharCode[instrument.interval]);
                     }
                     else if (instrument.type == 1) {
-                        buffer.push(250, base64IntToCharCode[instrument.vibrato]);
-                        buffer.push(249, base64IntToCharCode[instrument.algorithm]);
-                        buffer.push(248, base64IntToCharCode[instrument.feedbackType]);
-                        buffer.push(247, base64IntToCharCode[instrument.feedbackAmplitude]);
-                        buffer.push(246, base64IntToCharCode[instrument.feedbackEnvelope]);
-                        buffer.push(245);
+                        buffer.push(99, base64IntToCharCode[instrument.vibrato]);
+                        buffer.push(65, base64IntToCharCode[instrument.algorithm]);
+                        buffer.push(70, base64IntToCharCode[instrument.feedbackType]);
+                        buffer.push(66, base64IntToCharCode[instrument.feedbackAmplitude]);
+                        buffer.push(86, base64IntToCharCode[instrument.feedbackEnvelope]);
+                        buffer.push(81);
                         for (let o = 0; o < beepbox.Config.operatorCount; o++) {
                             buffer.push(base64IntToCharCode[instrument.operators[o].frequency]);
                         }
-                        buffer.push(244);
+                        buffer.push(80);
                         for (let o = 0; o < beepbox.Config.operatorCount; o++) {
                             buffer.push(base64IntToCharCode[instrument.operators[o].amplitude]);
                         }
-                        buffer.push(243);
+                        buffer.push(69);
                         for (let o = 0; o < beepbox.Config.operatorCount; o++) {
                             buffer.push(base64IntToCharCode[instrument.operators[o].envelope]);
                         }
                     }
                     else if (instrument.type == 2) {
-                        buffer.push(242, base64IntToCharCode[instrument.chipNoise]);
+                        buffer.push(119, base64IntToCharCode[instrument.chipNoise]);
                     }
                     else if (instrument.type == 3) {
-                        buffer.push(241);
+                        buffer.push(83);
                         const spectrumBits = new BitFieldWriter();
                         for (let i = 0; i < beepbox.Config.spectrumControlPoints; i++) {
                             spectrumBits.write(beepbox.Config.spectrumControlPointBits, instrument.spectrumWave.spectrum[i]);
