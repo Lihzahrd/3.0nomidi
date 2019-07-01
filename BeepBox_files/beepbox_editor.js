@@ -11544,11 +11544,11 @@ var beepbox;
 var beepbox;
 (function (beepbox) {
     const { button, p, div, h2, input } = beepbox.HTML;
-    class ImportPrompt {
+    class HowAboutNoPrompt {
         constructor(_doc, _songEditor) {
             this._doc = _doc;
             this._songEditor = _songEditor;
-            this._fileInput = input({ type: "file", accept: ".json,application/json,.mid,.midi,audio/midi,audio/x-midi" });
+            this._fileInput = input({ type: "file", accept: "" });
             this._cancelButton = button({ className: "cancelButton" });
             this.container = div({ className: "prompt noSelection", style: "width: 300px;" }, h2("Import"), p({ style: "text-align: left; margin: 0.5em 0;" }, "BeepBox songs can be exported and re-imported as .json files. You could also use other means to make .json files for BeepBox as long as they follow the same structure."), p({ style: "text-align: left; margin: 0.5em 0;" }, "This version of beepbox does not allow midi import."), this._fileInput, this._cancelButton);
             this._close = () => {
